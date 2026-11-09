@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="container mt-4">
+    <div class="card mb-4 border-0 shadow-sm" style="background-color: #222227;">
+
+        <div class="card-header d-flex align-items-center gap-3" style="background-color: #222227;">
+            <img src="{{ url_for('static', filename='fotos_perfil/' ~ post.autor.foto_perfil) }}" class="rounded-circle" width="45" height="45" style="object-fit: cover;">
+            <div>
+                <h6 class="mb-0 fw-bold text-white">{{ post.autor.username }}</h6>
+                <small class="text-white-50" style="font-size: 0.8em;">{{ post.autor.email }} -- {% if form %}<a href="#" class="text-danger" data-bs-toggle="modal" data-bs-target="#ExcluirPost" >Excluir Post </a>{% endif %}</small>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <!-- Título do Post -->
+            <h4 class="card-title fw-bold mb-3" style="color: #00d2ff;">{{ post.titulo }}</h4>
+
+            <!-- Exibir Imagem ou GIF se existir -->
+            {% if post.imagem %}
+                <img src="{{ url_for('static', filename='fotos_posts/' ~ post.imagem) }}" class="img-fluid rounded mb-3 w-100" style="max-height: 400px; object-fit: cover;">
+            {% endif %}
+
+            <!-- Exibir Vídeo se existir -->
+            {% if post.video %}
+                <video controls class="w-100 rounded mb-3" style="max-height: 400px;">
+                    <source src="{{ url_for('static', filename='videos_posts/' ~ post.video) }}" type="video/mp4">
+                    O teu navegador não suporta a reprodução deste vídeo.
+                </video>
+            {% endif %}
+
+            <p class="card-text" style="color: #d1d1d1;">{{ post.corpo }}</p>
+        </div>
+    </div>
+</div>
+
+{% if form %}
+<div class="container mb-5">
+    <h1> Editar Post </h1>
+    <hr class="border border-2 border-secondary opacity-80 my-3">
+
+    <!-- Form com enctype="multipart/form-data" para permitir envio de mídia na edição -->
+    <form method="POST" action="" enctype="multipart/form-data" class="border border-3 border-secondary p-4 rounded">
+        <legend style="color:darkgray">Formulário de Edição</legend>
+
+        {{ form.hidden_tag() }}
+
+        <!-- Título -->
+        <div class="mb-3">
+            <p>
+                {{ form.titulo.label(class="form-label") }}<br>
+
+                {% if form.titulo.errors %}
+                    {{ form.titulo(class="form-control is-invalid bg-secondary text-white") }}
+                    <div class="invalid-feedback d-block">
+                        {% for erro in form.titulo.errors %}
+                            {{ erro }}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.titulo(class="form-control bg-secondary text-white") }}
+                {% endif %}
+            </p>
+        </div>
+
+        <!-- Conteúdo -->
+        <div class="mb-3">
+            <p>
+                {{ form.corpo.label(class="form-label") }}<br>
+
+                {% if form.corpo.errors %}
+                    {{ form.corpo(class="form-control is-invalid bg-secondary text-white") }}
+                    <div class="invalid-feedback d-block">
+                        {% for erro in form.corpo.errors %}
+                            {{ erro }}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.corpo(class="form-control bg-secondary text-white") }}
+                {% endif %}
+            </p>
+        </div>
+
+        <!-- Alterar Imagem / GIF -->
+        <div class="mb-3">
+            <p>
+                {{ form.imagem.label(class="form-label") }}<br>
+                {{ form.imagem(class="form-control bg-secondary text-white") }}
+                {% if form.imagem.errors %}
+                    <div class="invalid-feedback d-block">
+                        {% for erro in form.imagem.errors %}
+                            {{ erro }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </p>
+        </div>
+
+        <!-- Alterar Vídeo -->
+        <div class="mb-3">
+            <p>
+                {{ form.video.label(class="form-label") }}<br>
+                {{ form.video(class="form-control bg-secondary text-white") }}
+                {% if form.video.errors %}
+                    <div class="invalid-feedback d-block">
+                        {% for erro in form.video.errors %}
+                            {{ erro }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </p>
+        </div>
+
+        <div class="my-3">
+            <p>
+                {{ form.criar_post(class="btn btn-primary text-white fw-bold") }}<br>
+            </p>
+        </div>
+
+        <div class="text-center">
+            <p class="mb-0 text-secondary">Posts inapropriados são completamente proibidos. <a href="{{ url_for('aviso') }}" class="text-primary text-decoration-none fw-semibold">Saiba Mais</a></p>
+        </div>
+    </form>
+</div>
+{% endif %}
+
+<!-- Modal de Confirmação de Exclusão -->
+<div class="modal fade" id="ExcluirPost" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Excluir Post?</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Você realmente quer excluir esse post?
+        <br>
+        Essa ação não pode ser desfeita.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <form method="POST" action="{{ url_for('excluir_post', post_id=post.id) }}">
+            <button type="submit" class="btn btn-primary">Excluir</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

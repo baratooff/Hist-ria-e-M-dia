@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="container mt-4">
+    <div class="card bg-dark text-white border-secondary mb-4 shadow-sm">
+        <div class="card-body p-4 d-flex align-items-center flex-column flex-md-row gap-4">
+            <div class="position-relative">
+                <img src="{{ url_for('static', filename='fotos_perfil/' + current_user.foto_perfil) }}"
+                     alt="Foto de Perfil"
+                     class="rounded-circle border border-2 border-primary object-fit-cover"
+                     width="110" height="110">
+                <a href="{{ url_for('editar_foto_perfil') }}" class="btn btn-sm btn-primary position-absolute bottom-0 end-0 rounded-circle p-2" title="Editar Foto">
+                    ✏️
+                </a>
+            </div>
+            <div class="text-center text-md-start flex-grow-1">
+                <h3 class="mb-1 fw-bold">{{ current_user.username }}</h3>
+                <p class="text-muted mb-2">{{ current_user.email }}</p>
+                <p class="text-white-50 fs-6">{{ current_user.descricao }}</p>
+            </div>
+            <div>
+                <a href=" {{url_for('editar_perfil')}} " class="btn btn-outline-light btn-sm px-3">Editar Perfil</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="container mt-4">
+    <h3 class="text-white mb-3">Minhas Publicações</h3>
+
+    {% if posts %}
+        {% for post in posts %}
+        <div class="card mb-4 border-0 shadow-sm" style="background-color: #222227;">
+
+            <!-- Cabeçalho do Post -->
+            <div class="card-header d-flex align-items-center justify-content-between" style="background-color: #222227;">
+                <div class="d-flex align-items-center gap-3">
+                    <img src="{{ foto_perfil }}" class="rounded-circle" width="45" height="45" style="object-fit: cover;">
+                    <div>
+                        <h6 class="mb-0 fw-bold text-white">{{ current_user.username }}</h6>
+                        <small class="text-white-50" style="font-size: 0.8em;">{{ current_user.email }}</small>
+                    </div>
+                </div>
+                <div>
+                    <small class="text-white-50 opacity-75" style="font-size: 0.85em;">
+                        {{ post.data.strftime('%d/%m/%Y %H:%M') }}
+                    </small>
+                </div>
+            </div>
+
+            <!-- Corpo do Post com Link para abrir o detalhe -->
+            <div class="card-body">
+                <a href="{{ url_for('exibir_post', post_id=post.id) }}" class="text-decoration-none">
+                    <h4 class="card-title fw-bold mb-3" style="color: #00d2ff;">{{ post.titulo }}</h4>
+                </a>
+
+                {% if post.imagem %}
+                    <img src="{{ url_for('static', filename='fotos_posts/' ~ post.imagem) }}" class="img-fluid rounded mb-3 w-100" style="max-height: 400px; object-fit: cover;">
+                {% endif %}
+
+                <p class="card-text" style="color: #d1d1d1;">{{ post.corpo }}</p>
+            </div>
+
+        </div>
+        {% endfor %}
+    {% else %}
+        <p class="text-white-50">Ainda não fizeste nenhuma publicação.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="container mt-4">
+    {% for post in posts %}
+    <div class="card mb-4 border-0 shadow-sm" style="background-color: #222227;">
+
+        <div class="card-header d-flex align-items-center justify-content-between" style="background-color: #222227;">
+
+            <div class="d-flex align-items-center gap-3">
+                <img src="{{ url_for('static', filename='fotos_perfil/' ~ post.autor.foto_perfil) }}" class="rounded-circle" width="45" height="45" style="object-fit: cover;">
+                <div>
+                    <h6 class="mb-0 fw-bold text-white">{{ post.autor.username }}</h6>
+                    <small class="text-white-50" style="font-size: 0.8em;">{{ post.autor.email }}</small>
+                </div>
+            </div>
+
+            <div>
+                <small class="text-white-50 opacity-75" style="font-size: 0.85em;">
+                    {{ post.data.strftime('%d/%m/%Y %H:%M') }}
+                </small>
+            </div>
+
+        </div>
+
+        <div class="card-body">
+            <a href="{{ url_for('exibir_post', post_id=post.id) }}" class="text-decoration-none">
+                <h4 class="card-title fw-bold mb-3" style="color: #00d2ff;">{{ post.titulo }}</h4>
+            </a>
+
+            {% if post.imagem %}
+                <img src="{{ url_for('static', filename='fotos_posts/' ~ post.imagem) }}" class="img-fluid rounded mb-3 w-100" style="max-height: 400px; object-fit: cover;">
+            {% endif %}
+
+            <p class="card-text" style="color: #d1d1d1;">{{ post.corpo }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

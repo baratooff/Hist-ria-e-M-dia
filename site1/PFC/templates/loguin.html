@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div class="container">
+    <h1>Já criou uma conta? Faça Login!</h1>
+    <hr class="border border-1 border-secondary opacity-80 my-3">
+
+    <form method="POST"  action="" novalidate class="border border-3 border-secondary p-4 rounded">
+        <legend style="color:darkgray">Login</legend><br>
+        {{ form_login.hidden_tag() }}
+
+        <div class="mb-3 has validation">
+            <p>
+                {{ form_login.email.label(class="form-label") }}<br>
+
+                {% if form_login.email.errors %}
+                    {{ form_login.email(class="form-control is-invalid bg-secondary text-white") }}
+                <div class="invalid-feedback d-block">
+                    {% for erro in form_login.email.errors%}
+                        {{ erro }}
+                    {% endfor %}
+                </div>
+                {% else %}
+                    {{ form_login.email(class="form-control bg-secondary text-white ") }}
+                {% endif%}
+
+            </p>
+        </div>
+
+        <div class="mb-3">
+            <p>
+                {{ form_login.senha.label(class="form-label") }}<br>
+
+                {% if form_login.senha.errors %}
+                    {{ form_login.senha(class="form-control is-invalid bg-secondary text-white") }}
+                <div class="invalid-feedback d-block">
+                    {% for erro in form_login.senha.errors%}
+                        {{ erro }}
+                    {% endfor %}
+                </div>
+                {% else %}
+                    {{ form_login.senha(class="form-control bg-secondary text-white ") }}
+                {% endif%}
+            </p>
+        </div>
+
+        <div class="mb-3">
+            <p>
+                {{ form_login.botao_login(class="form-label btn btn-primary text-white fw-bold") }}<br>
+            </p>
+        </div>
+
+            <p>
+            {{ form_login.lembrar_dados.label }} {{ form_login.lembrar_dados() }}
+            </p>
+    </form>
+</div>
+{% endblock %}

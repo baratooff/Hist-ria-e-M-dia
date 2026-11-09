@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="container">
+    <h1> Criar Post </h1>
+    <hr class="border border-2 border-secondary opacity-80 my-3">
+    <form method="POST" action="" enctype="multipart/form-data" class="border border-3 border-secondary p-4 rounded">
+        <legend style="color:darkgray">Formulario</legend>
+
+        {{ form_criarpost.hidden_tag() }}
+        <div class="mb-3">
+            <p>
+                {{ form_criarpost.titulo.label(class="form-label") }}<br>
+
+                {% if form_criarpost.titulo.errors %}
+                    {{ form_criarpost.titulo(class="form-control is-invalid bg-secondary text-white") }}
+                    <div class="invalid-feedback d-block">
+                        {% for erro in form_criarpost.titulo.errors %}
+                            {{ erro }}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form_criarpost.titulo(class="form-control bg-secondary text-white") }}
+                {% endif %}
+            </p>
+        </div>
+        <div class="mb-3">
+            <p>
+                {{ form_criarpost.corpo.label(class="form-label") }}<br>
+
+                {% if form_criarpost.corpo.errors %}
+                    {{ form_criarpost.corpo(class="form-control is-invalid bg-secondary text-white") }}
+                    <div class="invalid-feedback d-block">
+                        {% for erro in form_criarpost.corpo.errors %}
+                            {{ erro }}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form_criarpost.corpo(class="form-control bg-secondary text-white") }}
+                {% endif %}
+            </p>
+        </div>
+        <div class="mb-3">
+            <p>
+                {{ form_criarpost.imagem.label(class="form-label") }}<br>
+                {{ form_criarpost.imagem(class="form-control bg-secondary text-white") }}
+                {% if form_criarpost.imagem.errors %}
+                    <div class="invalid-feedback d-block">
+                        {% for erro in form_criarpost.imagem.errors %}
+                            {{ erro }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </p>
+        </div>
+        <div class="mb-3">
+            <p>
+                {{ form_criarpost.video.label(class="form-label") }}<br>
+                {{ form_criarpost.video(class="form-control bg-secondary text-white") }}
+                {% if form_criarpost.video.errors %}
+                    <div class="invalid-feedback d-block">
+                        {% for erro in form_criarpost.video.errors %}
+                            {{ erro }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </p>
+        </div>
+        <div class="my-3">
+            <p>
+                {{ form_criarpost.criar_post(class="btn btn-primary text-white fw-bold") }}<br>
+            </p>
+        </div>
+
+        <div class="text-center">
+            <p class="mb-0 text-secondary">Posts inapropiados são completamente proibidos. <a href="{{ url_for('aviso') }}" class="text-primary text-decoration-none fw-semibold">Saiba Mais</a></p>
+        </div>
+    </form>
+</div>
+{% endblock %}

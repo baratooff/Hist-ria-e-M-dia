@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block body %}
+<br>
+<h1>
+    Usuários
+</h1>
+
+{% for usuario in lista_usuarios %}
+
+<div class="container mt-4">
+    <div class="card bg-dark text-white border-secondary mb-4 shadow-sm">
+        <div class="card-body p-4 d-flex align-items-center flex-column flex-md-row gap-4">
+            <div class="position-relative">
+                <img src="{{ url_for('static', filename='fotos_perfil/' ~ usuario.foto_perfil) }}"
+                     alt="Foto de Perfil"
+                     class="rounded-circle border border-2 border-primary object-fit-cover"
+                     width="110" height="110">
+            </div>
+            <div class="text-center text-md-start flex-grow-1">
+                <h3 class="mb-1 fw-bold">{{ usuario.username }}</h3>
+                <p class="text-muted mb-2">{{ usuario.email }}</p>
+                <p class="mb-0 text-light small">{{ usuario.bio or "Membro do projeto História e Mídia." }}</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endfor %}
+
+{% endblock %}

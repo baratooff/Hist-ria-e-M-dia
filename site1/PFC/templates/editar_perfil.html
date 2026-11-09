@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div class="container">
+    <h1> Editar Perfil </h1>
+    <hr class="border border-2 border-secondary opacity-80 my-3">
+
+    <form method="POST" action="" class="border border-3 border-secondary p-4 rounded", enctype="multipart/form-data">
+        <legend style="color:darkgray">Preencha as Edições</legend>
+
+        {{ form_editar_conta.hidden_tag() }}
+
+            <div class="mb-3">
+                <p>
+                    {{form_editar_conta.editar_nome_usuario.label(class="form-label") }}<br>
+
+                    {% if form_editar_conta.editar_nome_usuario.errors %}
+                    {{ form_editar_conta.editar_nome_usuario(class="form-control is-invalid bg-secondary text-white") }}
+                <div class="invalid-feedback d-block">
+                    {% for erro in form_editar_conta.editar_nome_usuario.errors%}
+                        {{ erro }}
+                    {% endfor %}
+                </div>
+                {% else %}
+                    {{ form_editar_conta.editar_nome_usuario(class="form-control bg-secondary text-white ") }}
+                {% endif%}
+                </p>
+            </div>
+
+            <div class="mb-3">
+                <p>
+                    {{form_editar_conta.editar_email.label(class="form-label") }}<br>
+
+                    {% if form_editar_conta.editar_email.errors %}
+                    {{ form_editar_conta.editar_email(class="form-control is-invalid bg-secondary text-white") }}
+                <div class="invalid-feedback d-block">
+                    {% for erro in form_editar_conta.editar_email.errors%}
+                        {{ erro }}
+                    {% endfor %}
+                </div>
+                {% else %}
+                    {{ form_editar_conta.editar_email(class="form-control bg-secondary text-white ") }}
+                {% endif%}
+                </p>
+            </div>
+
+        <div class="my-3">
+            <p>
+                {{form_editar_conta.botao_criar_conta(class="btn btn-primary text-white fw-bold") }}<br>
+            </p>
+        </div>
+
+        </form>
+</div>
+
+{% endblock %}

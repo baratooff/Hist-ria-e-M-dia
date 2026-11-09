@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div class="container">
+    <h1> Quer mesmo criar uma conta? </h1>
+    <hr class="border border-2 border-secondary opacity-80 my-3">
+
+    <form method="POST" action="" class="border border-3 border-secondary p-4 rounded">
+        <legend style="color:darkgray">Criar Conta</legend>
+
+        {{ form_criarconta.hidden_tag() }}
+
+            <div class="mb-3">
+                <p>
+                    {{form_criarconta.criar_nome_usuario.label(class="form-label") }}<br>
+
+                    {% if form_criarconta.criar_nome_usuario.errors %}
+                    {{ form_criarconta.criar_nome_usuario(class="form-control is-invalid bg-secondary text-white") }}
+                <div class="invalid-feedback d-block">
+                    {% for erro in form_criarconta.criar_nome_usuario.errors%}
+                        {{ erro }}
+                    {% endfor %}
+                </div>
+                {% else %}
+                    {{ form_criarconta.criar_nome_usuario(class="form-control bg-secondary text-white ") }}
+                {% endif%}
+                </p>
+            </div>
+
+            <div class="mb-3">
+                <p>
+                    {{form_criarconta.criar_email.label(class="form-label") }}<br>
+
+                    {% if form_criarconta.criar_email.errors %}
+                    {{ form_criarconta.criar_email(class="form-control is-invalid bg-secondary text-white") }}
+                <div class="invalid-feedback d-block">
+                    {% for erro in form_criarconta.criar_email.errors%}
+                        {{ erro }}
+                    {% endfor %}
+                </div>
+                {% else %}
+                    {{ form_criarconta.criar_email(class="form-control bg-secondary text-white ") }}
+                {% endif%}
+                </p>
+            </div>
+
+            <div class="mb-3">
+                <p>
+                    {{form_criarconta.criar_senha.label(class="form-label") }}<br>
+
+                    {% if form_criarconta.criar_senha.errors %}
+                    {{ form_criarconta.criar_senha(class="form-control is-invalid bg-secondary text-white") }}
+                <div class="invalid-feedback d-block">
+                    {% for erro in form_criarconta.criar_senha.errors%}
+                        {{ erro }}
+                    {% endfor %}
+                </div>
+                {% else %}
+                    {{ form_criarconta.criar_senha(class="form-control bg-secondary text-white ") }}
+                {% endif%}
+                </p>
+            </div>
+
+            <div class="mb-3">
+                <p>
+                    {{form_criarconta.confirmar_senha.label(class="form-label") }}<br>
+
+                    {% if form_criarconta.confirmar_senha.errors %}
+                    {{ form_criarconta.confirmar_senha(class="form-control is-invalid bg-secondary text-white") }}
+                <div class="invalid-feedback d-block">
+                    {% for erro in form_criarconta.confirmar_senha.errors%}
+                        {{ erro }}
+                    {% endfor %}
+                </div>
+                {% else %}
+                    {{ form_criarconta.confirmar_senha(class="form-control bg-secondary text-white ") }}
+                {% endif%}
+                </p>
+            </div>
+
+        <div class="my-3">
+            <p>
+                {{form_criarconta.botao_criar_conta(class="btn btn-primary text-white fw-bold") }}<br>
+            </p>
+        </div>
+
+        <div class="text-center">
+            <p class="mb-0 text-secondary">Já tem uma conta? <a href="{{ url_for('login') }}" class="text-primary text-decoration-none fw-semibold">Faça Login</a></p>
+        </div>
+
+        </form>
+</div>
+
+{% endblock %}

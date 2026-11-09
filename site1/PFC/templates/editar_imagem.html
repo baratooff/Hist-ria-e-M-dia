@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div class="container mt-4">
+    <fieldset>
+        <h1>Editar Foto de Perfil (apenas arquivos .jpg, .jpeg, .png ou gif)</h1>
+        <hr class="border border-2 border-secondary opacity-80 my-3">
+
+        <form method="POST" action="" class="border border-3 border-secondary p-4 rounded" enctype="multipart/form-data">
+            {{ form_editarimagem.hidden_tag() }}
+
+            <div class="form-group mb-3">
+                <img src="{{ url_for('static', filename='fotos_perfil/' ~ current_user.foto_perfil) }}" width="300" height="300" class="img-thumbnail d-block mb-3">
+
+                {{ form_editarimagem.foto_perfil.label(class="form-label") }}
+                {{ form_editarimagem.foto_perfil(class="form-control bg-secondary text-white") }}
+
+                {% if form_editarimagem.foto_perfil.errors %}
+                    {% for error in form_editarimagem.foto_perfil.errors %}
+                        <span class="text-danger small">{{ error }}</span>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            {{ form_editarimagem.botao_submit(class="btn btn-primary fw-bold") }}
+        </form>
+    </fieldset>
+</div>
+<br><br>
+
+<div class="text-center">
+    <p class="mb-0 text-secondary">É completamente proibido imagens inapropiadas. <a href="{{ url_for('aviso') }}" class="text-primary text-decoration-none fw-semibold">Saiba Mais</a></p>
+</div>
+{% endblock %}

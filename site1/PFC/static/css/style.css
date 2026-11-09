@@ -1,0 +1,78 @@
+html {
+    overflow-y: scroll;
+}
+
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: #0d0e12 !important;
+    color: #ffffff;
+}
+
+/* Espaçamento do container */
+.profile-container {
+    margin-top: 50px;
+}
+
+/* Centraliza o container principal com precisão */
+main.container-sm,
+main.container {
+    max-width: 650px !important; /* Ajusta a largura compacta ideal */
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+}
+
+/* Customização completa da Navbar */
+.custom-navbar {
+    background-color: #090909 !important;
+    border-bottom: 1px solid #2d2f36 !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-top: none !important;
+    border-radius: 0 0 14px 14px !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Cor padrão dos links */
+.custom-navbar .nav-link {
+    color: #b0b3b8 !important;
+    transition: color 0.2s ease-in-out !important;
+}
+
+/* Link da página ativa */
+.custom-navbar .nav-link.active {
+    color: #ffffff !important;
+}
+
+.custom-navbar .nav-link:hover,
+.custom-navbar .nav-link.active:hover {
+    --bs-nav-link-hover-color: #20c997 !important;
+    color: #20c997 !important;
+}
+
+.custom-navbar .navbar-brand:hover span {
+    color: #20c997 !important;
+    transition: color 0.2s ease-in-out !important;
+}
+
+/* Configuração do Vídeo em Fullscreen Fixado */
+#video-fundo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1; /* Envia o vídeo para trás de todo o conteúdo */
+    object-fit: cover; /* Garante que o vídeo cobre toda a tela sem distorcer */
+}
+
+/* Camada opcional para escurecer o vídeo e melhorar a leitura do texto */
+.conteudo-site {
+    position: relative;
+    z-index: 1;
+    color: white;
+}

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<video autoplay muted loop id="video-fundo">
+    <source src="{{ url_for('static', filename='videos/meu_video.mp4') }}" type="video/mp4">
+    O teu navegador não suporta vídeos em HTML5.
+</video>
+
+<div class="conteudo-site">
+    <h1>História e Mídia do Paraná</h1>
+</div>
+
+<div class="container my-5 text-white">
+    <!-- Título Principal -->
+    <h1 class="display-4 fw-bold text-info mb-4">
+        Projeto História e Mídia do Paraná
+    </h1>
+
+    <hr class="border border-secondary opacity-75 my-4">
+
+    <section class="mb-5">
+        <h2 class="h3 fw-semibold text-warning mb-3">
+            Sobre o Projeto
+        </h2>
+
+        <p class="fs-5 text-light leading-relaxed">
+            O projeto <strong>História e Mídia do Paraná</strong> busca resgatar, documentar e preservar a memória histórica e cultural do estado através dos diferentes meios de comunicação que marcaram época.
+        </p>
+
+        <p class="fs-5 text-light leading-relaxed">
+            Desde a imprensa escrita dos primeiros jornais impresso até à evolução do rádio, televisão e redes digitais, a iniciativa analisa o impacto da mídia na construção da identidade paranaense e na difusão da informação ao longo das décadas.
+        </p>
+    </section>
+
+    <section class="mb-5">
+        <h2 class="h3 fw-semibold text-warning mb-3">
+            Objetivos Principais
+        </h2>
+
+        <ul class="fs-5 text-light lh-lg">
+            <li>Preservar acervos históricos e registos de comunicação regionais.</li>
+            <li>Promover o acesso à informação e à educação patrimonial.</li>
+            <li>Analisar a transformação da linguagem mediática no estado.</li>
+            <li>Criar um espaço colaborativo para debate e partilha de conhecimento.</li>
+        </ul>
+    </section>
+
+    <section class="mb-4">
+        <h2 class="h3 fw-semibold text-warning mb-3">
+            Importância Cultural
+        </h2>
+
+        <p class="fs-5 text-light leading-relaxed">
+            Compreender a relação entre a história e os meios de comunicação é essencial para valorizar o património cultural do Paraná. Este espaço serve como ponte entre o conhecimento académico e a comunidade, permitindo que estudantes, investigadores e cidadãos explorem e compreendam as raízes do nosso estado.
+        </p>
+    </section>
+
+    <h2>Gostou do que leu? Acesse o site oficial do projeto para mais! <a href="https://www.historiamidia-tomazedison.com.br/" target="_blank" rel="noopener noreferrer">site oficial do projeto</a></h2>
+</div>
+
+{% endblock %}
