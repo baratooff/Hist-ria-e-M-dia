@@ -1,0 +1,8 @@
+Flask
+Flask-SQLAlchemy
+Flask-WTForms
+Flask-Login
+Flask-Bcrypt
+Pillow
+psycopg2-binary
+gunicorn
