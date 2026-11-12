@@ -1,6 +1,6 @@
 Flask
 Flask-SQLAlchemy
-Flask-WTForms
+Flask-WTF
 Flask-Login
 Flask-Bcrypt
 Pillow
