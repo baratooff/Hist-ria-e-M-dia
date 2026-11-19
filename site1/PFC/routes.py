@@ -79,6 +79,7 @@ def salvar_midia(arquivo, pasta_destino):
     nome_original, extensao = os.path.splitext(arquivo.filename)
     nome_ficheiro = codigo + extensao.lower()
     caminho_completo = os.path.join(app.root_path, 'static', pasta_destino, nome_ficheiro)
+    os.makedirs(os.path.dirname(caminho_completo), exist_ok=True)
     arquivo.save(caminho_completo)
     return nome_ficheiro
 
