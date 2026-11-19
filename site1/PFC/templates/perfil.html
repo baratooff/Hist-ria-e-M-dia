@@ -16,7 +16,7 @@
             <div class="text-center text-md-start flex-grow-1">
                 <h3 class="mb-1 fw-bold">{{ current_user.username }}</h3>
                 <p class="text-muted mb-2">{{ current_user.email }}</p>
-                <p class="text-white-50 fs-6">{{ current_user.descricao }}</p>
+                <p class="text-white-50 fs-6">{{ current_user.descricao or "Membo do projeto História e Mídia" }}</p>
             </div>
             <div>
                 <a href=" {{url_for('editar_perfil')}} " class="btn btn-outline-light btn-sm px-3">Editar Perfil</a>
@@ -43,7 +43,7 @@
                 </div>
                 <div>
                     <small class="text-white-50 opacity-75" style="font-size: 0.85em;">
-                        {{ post.data.strftime('%d/%m/%Y %H:%M') }}
+                        {{ post.data_criacao.strftime('%d/%m/%Y %H:%M') }}
                     </small>
                 </div>
             </div>
