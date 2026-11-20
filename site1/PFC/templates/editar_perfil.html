@@ -45,6 +45,23 @@
                 </p>
             </div>
 
+            <div class="mb-3">
+                <p>
+                    {{form_editar_conta.descricao.label(class="form-label") }}<br>
+
+                    {% if form_editar_conta.descricao.errors %}
+                    {{ form_editar_conta.descricao(class="form-control is-invalid bg-secondary text-white") }}
+                <div class="invalid-feedback d-block">
+                    {% for erro in form_editar_conta.descriao.errors%}
+                        {{ erro }}
+                    {% endfor %}
+                </div>
+                {% else %}
+                    {{ form_editar_conta.descricao(class="form-control bg-secondary text-white ") }}
+                {% endif%}
+                </p>
+            </div>
+
         <div class="my-3">
             <p>
                 {{form_editar_conta.botao_criar_conta(class="btn btn-primary text-white fw-bold") }}<br>
